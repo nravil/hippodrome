@@ -4,16 +4,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.Mockito.mockStatic;
 
 class HorseTest {
 
     @Test
     void checkConstructorWhenFirstParameterIsNullTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                    new Horse(null, 1, 2);
-                }
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse(null, 1, 2)
         );
         assertEquals("Name cannot be null.", exception.getMessage());
     }
@@ -21,27 +18,21 @@ class HorseTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\t"})
     void checkConstructorWhenFirstParameterIsEmptyStringTest(String name) {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                    new Horse(name, 3, 2);
-                }
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse(name, 3, 2)
         );
         assertEquals("Name cannot be blank.", exception.getMessage());
     }
 
     @Test
     void checkConstructorWhenSecondParameterIsNegativeNumberTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                    new Horse("name", -1, 2);
-                }
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse("name", -1, 2)
         );
         assertEquals("Speed cannot be negative.", exception.getMessage());
     }
 
     @Test
     void checkConstructorWhenThirdParameterIsPositiveNumberTest() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                    new Horse("name", 1, -2);
-                }
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse("name", 1, -2)
         );
         assertEquals("Distance cannot be negative.", exception.getMessage());
     }
